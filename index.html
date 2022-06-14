@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YYYTDL-dev ver0.1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <link rel="stylesheet" href="./YY-HOME/index_css.css"> -->
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+  </head>
+
+<body>
+
+  <header>
+    <h1>YYYTDL-dev</h1>
+  </header>
+
+<input type="url" id="yturlInput" placeholder="ここにYouTubeのURLを入れてください"><br>
+<button id="submit">送信</button><br>
+<p id="errorMsg"></p>
+<div id="errorGAS"></div>
+
+<div id="showYTArea">
+  <video controls playsinline autoplay muted></video>
+  <details id="VandA">
+    <summary>動画＋音声</summary>
+
+  </details>
+  <details id="AVonly">
+    <summary>動画のみまたは音声のみ</summary>
+    <p>まだ対応していません（その部分を作っていません）</p>
+  </details>
+</div>
+
+<?!= HtmlService.createHtmlOutputFromFile('js').getContent(); ?>
+</body>
+</html>

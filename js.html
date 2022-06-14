@@ -1,0 +1,76 @@
+<script>
+
+const yturlInput=document.getElementById("yturlInput");
+const submit=document.getElementById("submit");
+const errorMsg=document.getElementById("errorMsg");
+const errorGAS=document.getElementById("errorGAS");
+const video=document.getElementsByTagName("video")[0];
+const VandA=document.getElementById("VandA");
+const AVonly=document.getElementById("AVonly");
+
+yturlInput.addEventListener("keydown",e=>{
+  if(e.key==="Enter"){
+    submit.click();
+  }
+});
+
+submit.addEventListener("click",e=>{
+  const YTURL=yturlInput.value;
+  if(YTURL!==""&&URLCheck(YTURL)===true){
+    errorMsg.textContent="";
+    google.script.run.withSuccessHandler(showYT).getYT(YTURL);
+
+  }else{
+    errorMsg.textContent="エラーが発生しました。URLの確認や、このサイトを再読み込みを行ってください。";
+  }
+})
+
+function URLCheck(q){
+  let s=q.slice(0,8);
+  let d=q.replace(/http:\/\/|https:\/\//,"").split("/")[0];
+  if(s.startsWith("https://")||s.startsWith("http://") || d==="www.youtube.com"||d==="m.youtube.com"||d==="youtu.be"||d==="music.youtube.com"){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function showYT(e){
+  const {formats,adaptiveFormats}=JSON.parse(e);
+  console.log(formats,adaptiveFormats);
+  if(formats[0].url===undefined||formats[0].signatureChiper===true){
+    errorMsg.textContent="すみません。この動画のURLは暗号署名されています。ただいま開発中ですので、別の方法をお試しください。";
+  }else{
+    let avhd;
+    let avst;
+    if(formats.length>=2){
+      avhd=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
+      avst=formats[1].itag===18? formats[1] : formats[0].itag===18? formats[0] : formats[1];
+    }else{
+      avst=formats[0];
+    }
+    video.src=avhd? avhd.url : avst.url;
+    createOutput([avhd,avst],VandA);
+    VandA.open=true;
+  }
+}
+
+function createOutput(urlobjs,place){
+   while(place.firstChild){
+    place.removeChild(place.firstChild);
+   }
+   let smr=document.createElement("summary");
+   smr.textContent="動画＋音声";
+   place.appendChild(smr);
+  for(let i=0,len=urlobjs.length;i<len;i++){
+    let a=document.createElement("a");
+    a.classList.add("URLout");
+    a.href=urlobjs[i].url;
+    a.textContent=urlobjs[i].qualityLabel;
+    a.target="_blank";
+    a.rel="noopener noreferrer";
+    place.appendChild(a);
+  }
+}
+
+</script>
