@@ -60,6 +60,8 @@ function mime() {
   console.log(ContentService.MimeType);
 }
 
+//Tools
+
 function startsWith(target, pattern) {
   return target.indexOf(pattern) === 0;
 }
