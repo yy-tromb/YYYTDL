@@ -6,4 +6,4 @@ This is a web application with Google Apps Script. I'm sorry we can't get "Signa
 
 これはGoogle Apps Scriptのウェブアプリです。暗号署名されたURLを使用した動画は取得できません。  
 
-[GAS Web Application]{https://script.google.com/macros/s/AKfycbyE0XiOZ4NVw0liBuZp2tPimjDLqY3ya4ubSvpTu54dkWDVenuMg14jpkxcH-DDjOwH/exec}  
+[GAS Web Application](https://script.google.com/macros/s/AKfycbyE0XiOZ4NVw0liBuZp2tPimjDLqY3ya4ubSvpTu54dkWDVenuMg14jpkxcH-DDjOwH/exec)  
