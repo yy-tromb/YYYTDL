@@ -36,41 +36,62 @@ function URLCheck(q){
 }
 
 function showYT(e){
+  if(e.error===true){
+    errorMsg.textContent="GASでエラーが発生しました："+String(e.error);
+    return false;
+  }
   const {formats,adaptiveFormats}=JSON.parse(e);
   console.log(formats,adaptiveFormats);
-  if(formats[0].url===undefined||formats[0].signatureChiper===true){
+  if(formats[0].url===undefined&&formats[0].signatureChiper===true){
     errorMsg.textContent="すみません。この動画のURLは暗号署名されています。ただいま開発中ですので、別の方法をお試しください。";
+    return false;
   }else{
-    let avhd;
-    let avst;
+    let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{}};
     if(formats.length>=2){
-      avhd=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
-      avst=formats[1].itag===18? formats[1] : formats[0].itag===18? formats[0] : formats[1];
+      avBoth[0]=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
+      avBoth[1]=formats[1].itag===18? formats[1] : formats[0].itag===18? formats[0] : formats[1];
     }else{
-      avst=formats[0];
+      avBoth=formats[0];
     }
-    video.src=avhd? avhd.url : avst.url;
-    createOutput([avhd,avst],VandA);
+    fmtSet(avBoth);
+    video.src=avBoth;
+    createOutput(avBoth,VandA);
     VandA.open=true;
   }
 }
 
-function createOutput(urlobjs,place){
+function createOutput(obj,place){
    while(place.firstChild){
     place.removeChild(place.firstChild);
    }
    let smr=document.createElement("summary");
-   smr.textContent="動画＋音声";
+   if(place===VandA){
+    smr.textContent="動画＋音声";
+   }else if(place===AVonly){
+    smr.textContent="動画または音声のみ";
+   }
    place.appendChild(smr);
-  for(let i=0,len=urlobjs.length;i<len;i++){
+   let fmt=obj.fmt;
+   let urls=obj.urls;
+  for(let i=0,len=fmt.length;i<len;i++){
     let a=document.createElement("a");
     a.classList.add("URLout");
-    a.href=urlobjs[i].url;
-    a.textContent=urlobjs[i].qualityLabel;
+    a.href=urls[i];
+    a.textContent=obj.q[i];
     a.target="_blank";
     a.rel="noopener noreferrer";
     place.appendChild(a);
   }
 }
 
+
+function fmtSet(obj){
+  let fmt=obj.fmt;
+  for(let i=0,len=fmt.length;i<len;i++){
+    obj.url[i]=fmt[i].url;
+    obj.itags[i]=fmt[i].itags;
+    obj.q[i]=fmt[i].qualityLabel;
+    obj.qurl[fmt[i].qualityLabel]=fmt[i].url;
+  }
+}
 </script>
