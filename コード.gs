@@ -15,11 +15,12 @@ function getYT(ytURL) {
     return err("This isn't URL");
   }
   const domain = ytURL.split("://")[1].split("/")[0];
-  if (
+  if( startsWith(domain, "music.youtube.com") === true ){
+    ytURL="https://www.youtube.com/"+ytURL. ytURL.split("://")[1].split("/")[1];
+  }else if (
     startsWith(domain, "youtu.be") === true ||
     startsWith(domain, "www.youtube.com") === true ||
-    startsWith(domain, "m.youtube.com") === true ||
-    startsWith(domain, "music.youtube.com") === true
+    startsWith(domain, "m.youtube.com") === true
   ) {
     const res = UrlFetchApp.fetch(ytURL);
     const htmltext = res.getContentText();
@@ -44,17 +45,10 @@ function getYT(ytURL) {
 }
 
 function err(why) {
-  reason = why;
-  let htmlOutput = HtmlService.createTemplateFromFile("error")
-    .evaluate()
-    .setTitle("YYYTDL ver.0.1 -Error")
-    .addMetaTag("viewport", "width=device-width, initial-scale=1");
-  return htmlOutput.getContent();
+  let errobj={error:why}
+  return JSON.stringify(errobj);
 }
 
-function cause() {
-  return reason;
-}
 
 function mime() {
   console.log(ContentService.MimeType);
