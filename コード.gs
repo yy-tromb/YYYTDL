@@ -22,6 +22,7 @@ function getYT(ytURL) {
     startsWith(domain, "www.youtube.com") === true ||
     startsWith(domain, "m.youtube.com") === true
   ) {
+    Logger.log(ytURL);
     const res = UrlFetchApp.fetch(ytURL);
     const htmltext = res.getContentText();
     const fixedhtml = htmltext.split("var ytInitialPlayerResponse = null;")[1];
@@ -45,8 +46,12 @@ function getYT(ytURL) {
 }
 
 function err(why) {
-  let errobj={error:why};
+  let errobj={error:why}
   return JSON.stringify(errobj);
+}
+
+function test(){
+  Logger.log(getYT("https://www.youtube.com/watch?v=cpk9ghEYiOI"))
 }
 
 

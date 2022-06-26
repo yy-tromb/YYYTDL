@@ -7,5 +7,7 @@
     "executeAs": "USER_DEPLOYING",
     "access": "ANYONE_ANONYMOUS"
   },
-  "oauthScopes": []
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.external_request"
+  ]
 }
