@@ -36,6 +36,10 @@ function URLCheck(q){
 }
 
 function showYT(e){
+  if(e.error===true){
+    errorMsg.textContent="GASでエラーが発生しました："+String(e.error);
+    return false;
+  }
   const {formats,adaptiveFormats}=JSON.parse(e);
   console.log(formats,adaptiveFormats);
   if(formats[0].url===undefined&&formats[0].signatureChiper===true){

@@ -45,17 +45,10 @@ function getYT(ytURL) {
 }
 
 function err(why) {
-  reason = why;
-  let htmlOutput = HtmlService.createTemplateFromFile("error")
-    .evaluate()
-    .setTitle("YYYTDL ver.0.1 -Error")
-    .addMetaTag("viewport", "width=device-width, initial-scale=1");
-  return htmlOutput.getContent();
+  let errobj={error:why}
+  return JSON.stringify(errobj);
 }
 
-function cause() {
-  return reason;
-}
 
 function mime() {
   console.log(ContentService.MimeType);
