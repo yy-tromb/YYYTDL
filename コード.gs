@@ -45,7 +45,7 @@ function getYT(ytURL) {
 }
 
 function err(why) {
-  let errobj={error:why}
+  let errobj={error:why};
   return JSON.stringify(errobj);
 }
 
