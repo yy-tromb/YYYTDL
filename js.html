@@ -28,7 +28,12 @@ submit.addEventListener("click",e=>{
 function URLCheck(q){
   let s=q.slice(0,8);
   let d=q.replace(/http:\/\/|https:\/\//,"").split("/")[0];
-  if(s.startsWith("https://")||s.startsWith("http://") || d==="www.youtube.com"||d==="m.youtube.com"||d==="youtu.be"||d==="music.youtube.com"){
+  if( (
+        s.startsWith("https://") || s.startsWith("http://") 
+      ) && (
+        d==="www.youtube.com"||d==="m.youtube.com"||d==="youtu.be"||d==="music.youtube.com"
+      )
+    ){
     return true;
   }else{
     return false;
@@ -36,8 +41,8 @@ function URLCheck(q){
 }
 
 function showYT(e){
-  if(JSON.parse(e).error===true){
-    errorMsg.textContent="GASでエラーが発生しました："+String(e.error);
+  if(!!(JSON.parse(e).error)===true){
+    errorMsg.textContent="GASでエラーが発生しました："+JSON.parse(e).error;
     return false;
   }
   const {formats,adaptiveFormats}=JSON.parse(e);
@@ -45,7 +50,7 @@ function showYT(e){
     errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
     return false;
   }
-  if(formats[0].signatureChiper===true){
+  if(!!(formats[0].signatureChiper)===true){
     errorMsg.textContent="すみません。この動画のURLは暗号署名されています。ただいま開発中ですので、別の方法をお試しください。";
     return false;
   }else{

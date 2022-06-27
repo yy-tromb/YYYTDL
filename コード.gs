@@ -16,13 +16,12 @@ function getYT(ytURL) {
   }
   const domain = ytURL.split("://")[1].split("/")[0];
   if( startsWith(domain, "music.youtube.com") === true ){
-    ytURL="https://www.youtube.com/"+ytURL. ytURL.split("://")[1].split("/")[1];
+    ytURL="https://www.youtube.com/"+ytURL.split("://")[1].split("/")[1];
   }else if (
     startsWith(domain, "youtu.be") === true ||
     startsWith(domain, "www.youtube.com") === true ||
     startsWith(domain, "m.youtube.com") === true
   ) {
-    Logger.log(ytURL);
     const res = UrlFetchApp.fetch(ytURL);
     const htmltext = res.getContentText();
     const fixedhtml = htmltext.split("var ytInitialPlayerResponse = null;")[1];
@@ -35,7 +34,9 @@ function getYT(ytURL) {
     const ytdata = JSON.stringify({
       formats: formats,
       adaptiveFormats: adaptiveFormats,
+      objectKeys:Object.keys(streamingData)
     });
+    Logger.log(ytdata);
     let output = ContentService.createTextOutput();
     output.setMimeType(ContentService.MimeType.JSON);
     output.setContent(ytdata); // return response-data
@@ -46,7 +47,7 @@ function getYT(ytURL) {
 }
 
 function err(why) {
-  let errobj={error:why}
+  let errobj={error:why};
   return JSON.stringify(errobj);
 }
 
