@@ -17,6 +17,7 @@ function getYT(ytURL) {
   const domain = ytURL.split("://")[1].split("/")[0];
   if( startsWith(domain, "music.youtube.com") === true ){
     ytURL="https://www.youtube.com/"+ytURL.split("://")[1].split("/")[1];
+    return err("This isn't YouTube (This App isn't yet get from YT Music)");
   }else if (
     startsWith(domain, "youtu.be") === true ||
     startsWith(domain, "www.youtube.com") === true ||
@@ -36,7 +37,7 @@ function getYT(ytURL) {
       adaptiveFormats: adaptiveFormats,
       objectKeys:Object.keys(streamingData)
     });
-    Logger.log(ytdata);
+    //Logger.log(ytdata);
     let output = ContentService.createTextOutput();
     output.setMimeType(ContentService.MimeType.JSON);
     output.setContent(ytdata); // return response-data
@@ -48,13 +49,18 @@ function getYT(ytURL) {
 
 function err(why) {
   let errobj={error:why};
-  return JSON.stringify(errobj);
+  let errjson=JSON.stringify(errobj);
+  return errjson;
 }
 
 function test(){
-  Logger.log(getYT("https://www.youtube.com/watch?v=cpk9ghEYiOI"))
+  Logger.log(getYT("https://www.youtube.com/watch?v=cpk9ghEYiOI"));
+  Logger.log(getYT("https://music.youtube.com/watch?v=5_-TcIOxm60&list=OLAK5uy_l8fQyUWZfOO25E9HeDeeJCIDm0tsxwguc"));
 }
 
+function errTest(){
+  Logger.log(err("Test tEst teSt tesT"));
+}
 
 function mime() {
   console.log(ContentService.MimeType);
