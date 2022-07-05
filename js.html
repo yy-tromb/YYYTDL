@@ -55,17 +55,24 @@ function showYT(e){
     return false;
   }else{
     let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{}};
+    let adaptive={fmt:[],urls:[],itags:[],q:[],qurl:{}};
     if(formats.length>=2){
       avBoth.fmt[0]=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
       avBoth.fmt[1]=formats[1].itag===18? formats[1] : formats[0].itag===18? formats[0] : formats[1];
     }else{
       avBoth.fmt[0]=formats[0];
     }
+    //~.formats
     fmtSet(avBoth);
     video.src=avBoth.urls[0];
-    console.log(avBoth);
+    console.log("avBoth",avBoth);
     createOutput(avBoth,VandA);
     VandA.open=true;
+    //~.adaptiveaFormats
+    adaptive.fmt=adaptiveFormats;
+    fmtSet(adaptive);
+    console.log("adaptive",adaptive);
+    createOutput(adaptive,AVonly);
   }
 }
 
