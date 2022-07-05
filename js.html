@@ -48,7 +48,6 @@ function showYT(e){
   const {formats,adaptiveFormats}=JSON.parse(e);
   if(formats===undefined){
     errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
-    return false;
   }
   if(!!(formats[0].signatureChiper)===true){
     errorMsg.textContent="すみません。この動画のURLは暗号署名されています。ただいま開発中ですので、別の方法をお試しください。";
