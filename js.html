@@ -53,7 +53,6 @@ function showYT(e){
     let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{}};
     let adaptive={fmt:[],urls:[],itags:[],q:[],qurl:{}};
     if(formats!==undefined){
-    errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
       //~.formats
       if(formats.length>=2){
         avBoth.fmt[0]=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
@@ -69,6 +68,7 @@ function showYT(e){
       return true;
     }
 
+    errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
     //~.adaptiveaFormats
     adaptive.fmt=adaptiveFormats;
     fmtSet(adaptive);
