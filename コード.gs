@@ -3,7 +3,7 @@ let reason = "Error";
 function doGet(e) {
   var htmlOutput = HtmlService.createTemplateFromFile("index")
     .evaluate()
-    .setTitle("YYYTDL ver.0.1")
+    .setTitle("YYYTDL ver.0.2.5")
     .addMetaTag("viewport", "width=device-width, initial-scale=1");
   return htmlOutput;
 }
