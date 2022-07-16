@@ -31,7 +31,7 @@ function URLCheck(q){
   if( (
         s.startsWith("https://") || s.startsWith("http://") 
       ) && (
-        d==="www.youtube.com"||d==="m.youtube.com"||d==="youtu.be"||d==="music.youtube.com"
+        d==="www.youtube.com"||d==="m.youtube.com"||d==="youtu.be"
       )
     ){
     return true;
@@ -50,8 +50,8 @@ function showYT(e){
     errorMsg.textContent="すみません。この動画のURLは暗号署名されています。ただいま開発中ですので、別の方法をお試しください。";
     return false;
   }else{
-    let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{}};
-    let adaptive={fmt:[],urls:[],itags:[],q:[],qurl:{}};
+    let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{},mime:[],mimeOK:{}};
+    let adaptive={fmt:[],urls:[],itags:[],q:[],qurl:{},mime:[],mimeOK:{}};
     if(formats!==undefined || formats!==null){
       //~.formats
 
@@ -76,6 +76,16 @@ function showYT(e){
     console.log("adaptive",adaptive);
     createOutput(adaptive,AVonly);
     AVonly.open=true;
+  }
+}
+
+function fmtSet(obj){
+  let fmt=obj.fmt;
+  for(let i=0,len=fmt.length;i<len;i++){
+    obj.urls[i]=fmt[i].url;
+    obj.itags[i]=fmt[i].itag;
+    obj.q[i]=fmt[i].qualityLabel;
+    obj.qurl[fmt[i].qualityLabel]=fmt[i].url;
   }
 }
 
@@ -104,13 +114,4 @@ function createOutput(obj,place){
 }
 
 
-function fmtSet(obj){
-  let fmt=obj.fmt;
-  for(let i=0,len=fmt.length;i<len;i++){
-    obj.urls[i]=fmt[i].url;
-    obj.itags[i]=fmt[i].itag;
-    obj.q[i]=fmt[i].qualityLabel;
-    obj.qurl[fmt[i].qualityLabel]=fmt[i].url;
-  }
-}
 </script>
