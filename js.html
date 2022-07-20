@@ -121,7 +121,7 @@ dlExe.onclick=async ()=>{
   const blobArr=[];
   for(let i=0;i<2**32;i=i+5_000_000){
     try{
-      const res=await fetch(url+"range="+i+"-"+(i+5_000_000-1));
+      const res=await fetch(url+"&range="+i+"-"+(i+5_000_000-1));
       if(res.ok===true){
         blobArr.push(await res.blob());
       }else{
