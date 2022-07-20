@@ -116,7 +116,10 @@ function createOutput(obj,place){
   }
 }
 
+/* CORS errorを回避するためGASのfetch使いたいがめんどい
+
 dlExe.onclick=async ()=>{
+  const gfetch=google.script.UrlFetchApp.fetch;
   const url=dlurl.value;
   const blobArr=[];
   for(let i=0;i<2**32;i=i+5_000_000){
@@ -138,5 +141,7 @@ dlExe.onclick=async ()=>{
   a.click();
   a.onclick=()=>a.remove();
 };
+
+*/
 
 </script>
