@@ -116,7 +116,7 @@ function createOutput(obj,place){
   }
 }
 
-dlExe.onclick=()=>{
+dlExe.onclick=async ()=>{
   const url=dlurl.value;
   const blobArr=[];
   for(let i=0;i<2**32;i=i+5_000_000){
