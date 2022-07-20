@@ -119,9 +119,9 @@ function createOutput(obj,place){
 dlExe.onclick=()=>{
   const url=dlurl.value;
   const blobArr=[];
-  for(let i=0;i<2**32;i=i+5000000){
+  for(let i=0;i<2**32;i=i+5_000_000){
     try{
-      const res=await fetch(url);
+      const res=await fetch(url+"range="+i+"-"+(i+5_000_000-1));
       blobArr.push(await res.blob());
     }catch(e){
       break;
