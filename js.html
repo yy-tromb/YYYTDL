@@ -8,6 +8,9 @@ const video=document.getElementsByTagName("video")[0];
 const VandA=document.getElementById("VandA");
 const AVonly=document.getElementById("AVonly");
 
+const dlurl=document.getElementById("dlurl");
+const dlExe=document.getElementById("dlExe");
+
 yturlInput.addEventListener("keydown",e=>{
   if(e.key==="Enter"){
     submit.click();
@@ -113,5 +116,23 @@ function createOutput(obj,place){
   }
 }
 
+dlExe.onclick=()=>{
+  const url=dlurl.value;
+  const blobArr=[];
+  for(let i=0;i<2**32;i=i+5000000){
+    try{
+      const res=await fetch(url);
+      blobArr.push(await res.blob());
+    }catch(e){
+      break;
+    }
+  }
+  const blob=new Blob(blobArr,{type:blobArr[0].type});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  document.body.appendChild(a);
+  a.click();
+  a.onclick=()=>a.remove();
+};
 
 </script>
