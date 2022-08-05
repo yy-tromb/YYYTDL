@@ -80,7 +80,8 @@ function showYT(e){
     const adpFmt=new YTDataSet(adaptiveFormats);
     console.log("adaptive",adpFmt);
     //divide into Video Data and Audio Data
-
+    const {Vfmt,Afmt}=AVdevide(adaptiveFormats);
+    console.log(Vfmt,Afmt);
 
 
     Vdetail.open=true;
@@ -118,6 +119,11 @@ function createOutput(obj,place){
     a.rel="noopener noreferrer";
     place.appendChild(a);
   }
+}
+
+function AVdevide(data){
+
+
 }
 
 /* CORS errorを回避するためGASのfetch使いたいがめんどい
