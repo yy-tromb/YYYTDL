@@ -3,7 +3,6 @@
 const yturlInput=document.getElementById("yturlInput");
 const submit=document.getElementById("submit");
 const errorMsg=document.getElementById("errorMsg");
-const errorGAS=document.getElementById("errorGAS");
 const video=document.getElementsByTagName("video")[0];
 const AVdetail=document.getElementById("AVdetail");
 const AVout=document.getElementById("AVout");
@@ -11,6 +10,8 @@ const Vdetail=document.getElementById("Vdetail");
 const Vout=document.getElementById("Vout");
 const Adetail=document.getElementById("Adetail");
 const Aout=document.getElementById("Aout");
+
+const YTDataHistory=[];
 
 /*
 const dlurl=document.getElementById("dlurl");
@@ -25,13 +26,14 @@ yturlInput.addEventListener("keydown",e=>{
 
 submit.addEventListener("click",e=>{
   const YTURL=yturlInput.value;
+  YTDataHistory.push({url:YTURL});
   if(YTURL!==""&&URLCheck(YTURL)===true){
     errorMsg.textContent="";
-    errorGAS.textContent="";
     google.script.run.withSuccessHandler(showYT).getYT(YTURL);
 
   }else{
     errorMsg.textContent="エラーが発生しました。URLの確認や、このサイトを再読み込みを行ってください。";
+    YTDataHistory.at(-1).error=errorMsg.textContent;
   }
 })
 
@@ -53,6 +55,7 @@ function URLCheck(q){
 function showYT(e){
   if(!!(JSON.parse(e).error)===true){
     errorMsg.textContent="GASでエラーが発生しました："+JSON.parse(e).error;
+    YTDataHistory.at(-1).error=errorMsg.textContent;
     return false;
   }
   const {formats,adaptiveFormats}=JSON.parse(e);
@@ -60,8 +63,10 @@ function showYT(e){
     errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
     if(adaptiveFormats===undefined || adaptiveFormats===null ){
       errorMsg.textContent="動画と音声がまとまったものも、分かれているものも取得できませんでした。どうしましょう？w";
+      YTDataHistory.at(-1).error=errorMsg.textContent;
       return false;
     }
+    YTDataHistory.at(-1).error=errorMsg.textContent;
   }else{
       //~.formats
 
@@ -75,6 +80,7 @@ function showYT(e){
       console.log("formats",fmt);
       createOutput(fmt,AVout);
       AVdetail.open=true;
+      YTDataHistory.at(-1).fmt=fmt;
   }
     //~.adaptiveaFormats
     const adpFmt=new YTDataSet(adaptiveFormats);
@@ -82,10 +88,15 @@ function showYT(e){
     //divide into Video Data and Audio Data
     const {Vfmt,Afmt}=AVdevide(adaptiveFormats);
     console.log(Vfmt,Afmt);
-
+    
+    createOutput(Vfmt,Vout);
+    createOutput(Afmt,Aout);
 
     Vdetail.open=true;
     Adetail.open=true;
+
+    YTDataHistory.at(-1).V=Vfmt;
+    YTDataHistory.at(-1).A=Afmt;
   }
 }
 
