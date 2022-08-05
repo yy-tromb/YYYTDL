@@ -27,6 +27,7 @@ submit.addEventListener("click",e=>{
   const YTURL=yturlInput.value;
   if(YTURL!==""&&URLCheck(YTURL)===true){
     errorMsg.textContent="";
+    errorGAS.textContent="";
     google.script.run.withSuccessHandler(showYT).getYT(YTURL);
 
   }else{
@@ -72,10 +73,9 @@ function showYT(e){
     const fmt=new YTDataSet(formats);
       video.src=fmt.urls[0];
       console.log("formats",fmt);
-      createOutput(avBoth,VandA);
+      createOutput(fmt,AVout);
       VandA.open=true;
-    }else{
-    }
+  }
     //~.adaptiveaFormats
     adaptive.fmt=adaptiveFormats;
     fmtSet(adaptive);
