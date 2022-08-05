@@ -74,14 +74,17 @@ function showYT(e){
       video.src=fmt.urls[0];
       console.log("formats",fmt);
       createOutput(fmt,AVout);
-      VandA.open=true;
+      AVdetail.open=true;
   }
     //~.adaptiveaFormats
-    adaptive.fmt=adaptiveFormats;
-    fmtSet(adaptive);
-    console.log("adaptive",adaptive);
-    createOutput(adaptive,AVonly);
-    AVonly.open=true;
+    const adpFmt=new YTDataSet(adaptiveFormats);
+    console.log("adaptive",adpFmt);
+    //divide into Video Data and Audio Data
+
+
+
+    Vdetail.open=true;
+    Adetail.open=true;
   }
 }
 
@@ -102,20 +105,15 @@ function createOutput(obj,place){
    while(place.firstChild){
     place.removeChild(place.firstChild);
    }
-   let smr=document.createElement("summary");
-   if(place===VandA){
-    smr.textContent="動画＋音声";
-   }else if(place===AVonly){
-    smr.textContent="動画または音声のみ";
-   }
-   place.appendChild(smr);
    let fmt=obj.fmt;
    let urls=obj.urls;
+   let mime=obj.mime;
+   let q=obj.q;
   for(let i=0,len=fmt.length;i<len;i++){
     let a=document.createElement("a");
     a.classList.add("URLout");
     a.href=urls[i];
-    a.textContent=obj.q[i];
+    a.innerHTML=mime[i]+"<br>"+q[i];
     a.target="_blank";
     a.rel="noopener noreferrer";
     place.appendChild(a);
