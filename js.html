@@ -107,6 +107,7 @@ function YTDataSet(fmt){
   this.qurl={};
   this.mime=[];
   this.mimeOK=[];
+  this.bps=[];
   for(let i=0,len=fmt.length;i<len;i++){
     this.urls[i]=fmt[i].url;
     this.itags[i]=fmt[i].itag;
@@ -114,7 +115,8 @@ function YTDataSet(fmt){
     this.qurl[fmt[i].qualityLabel]?  this.qurl[fmt[i].qualityLabel].push(this.urls[i]) : this.qurl[fmt[i].qualityLabel]=[this.urls[i]] ;
     this.mime[i]=fmt[i].mimeType;
     this.mimeOK[i]=video.canPlayType(fmt[i].mimeType);
-    if(this.mimeOK[i]==="") this.mimeOK[i]="no"; 
+    if(this.mimeOK[i]==="") this.mimeOK[i]="no";
+    this.bps[i]=fmt[i].averageBitrate;
   }
 }
 
@@ -126,11 +128,12 @@ function createOutput(obj,place){
    let urls=obj.urls;
    let mime=obj.mime;
    let q=obj.q;
+   let bps=obj.bps;
   for(let i=0,len=fmt.length;i<len;i++){
     let a=document.createElement("a");
     a.classList.add("URLout");
     a.href=urls[i];
-    a.innerHTML=mime[i]+"<br>"+q[i];
+    a.innerHTML=mime[i]+"<br>"+q[i]+" "+(bps[i]/1000);
     a.target="_blank";
     a.rel="noopener noreferrer";
     place.appendChild(a);
