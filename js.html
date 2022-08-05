@@ -51,9 +51,15 @@ function showYT(e){
     return false;
   }
   const {formats,adaptiveFormats}=JSON.parse(e);
-  if(!!(formats[0].signatureChiper)===true){
-    errorMsg.textContent="すみません。この動画のURLは暗号署名されています。ただいま開発中ですので、別の方法をお試しください。";
-    return false;
+  let YTdata;
+  if(formats===undefined || formats===null){
+    errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
+    if(adaptiveFormats===undefined || adaptiveFormats===null ){
+      errorMsg.textContent="動画と音声がまとまったものも、分かれているものも取得できませんでした。どうしましょう？w";
+      return false;
+    }else{
+    YTdata=new YTDataSet(adaptiveFormats);
+    }
   }else{
     let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{},mime:[],mimeOK:{}};
     let adaptive={fmt:[],urls:[],itags:[],q:[],qurl:{},mime:[],mimeOK:{}};
@@ -73,7 +79,6 @@ function showYT(e){
       createOutput(avBoth,VandA);
       VandA.open=true;
     }else{
-      errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
     }
     //~.adaptiveaFormats
     adaptive.fmt=adaptiveFormats;
@@ -84,13 +89,16 @@ function showYT(e){
   }
 }
 
-function fmtSet(obj){
+function YTDataSet(obj){
   let fmt=obj.fmt;
   for(let i=0,len=fmt.length;i<len;i++){
-    obj.urls[i]=fmt[i].url;
-    obj.itags[i]=fmt[i].itag;
-    obj.q[i]=fmt[i].qualityLabel;
-    obj.qurl[fmt[i].qualityLabel]=fmt[i].url;
+    this.urls[i]=fmt[i].url;
+    this.itags[i]=fmt[i].itag;
+    this.q[i]=fmt[i].qualityLabel;
+    this.qurl[fmt[i].qualityLabel]=fmt[i].url;
+    this.mime[i]=fmt[i].mimeType;
+    this.mimeOK[i]=video.canPlayType(fmt[i].mimeType);
+    if(this.mimeOK[i]==="") this.mimeOK[i]="no";
   }
 }
 
