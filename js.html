@@ -5,8 +5,8 @@ const submit=document.getElementById("submit");
 const errorMsg=document.getElementById("errorMsg");
 const errorGAS=document.getElementById("errorGAS");
 const video=document.getElementsByTagName("video")[0];
-const VandA=document.getElementById("VandA");
-const AVonly=document.getElementById("AVonly");
+const AVdetail=document.getElementById("AVdetail");
+const AVout=document.getElementById("AVout");
 
 /*
 const dlurl=document.getElementById("dlurl");
@@ -51,31 +51,23 @@ function showYT(e){
     return false;
   }
   const {formats,adaptiveFormats}=JSON.parse(e);
-  let YTdata;
   if(formats===undefined || formats===null){
     errorMsg.textContent="なにが理由かは少しわかりませんが、動画と音声がまとまったものが取得できなくなりました。修正をお待ちください。";
     if(adaptiveFormats===undefined || adaptiveFormats===null ){
       errorMsg.textContent="動画と音声がまとまったものも、分かれているものも取得できませんでした。どうしましょう？w";
       return false;
-    }else{
-    YTdata=new YTDataSet(adaptiveFormats);
     }
   }else{
-    let avBoth={fmt:[],urls:[],itags:[],q:[],qurl:{},mime:[],mimeOK:{}};
-    let adaptive={fmt:[],urls:[],itags:[],q:[],qurl:{},mime:[],mimeOK:{}};
-    if(formats!==undefined || formats!==null){
       //~.formats
 
-      if(formats.length>=2){
-        avBoth.fmt[0]=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
-        avBoth.fmt[1]=formats[1].itag===18? formats[1] : formats[0].itag===18? formats[0] : formats[1];
-      }else{
-        avBoth.fmt[0]=formats[0];
-      }
+    if(formats.length>=2){
+      formats[0]=formats[0].itag===22? formats[0] : formats[1].itag===22? formats[1] : formats[0]; 
+      formats[1]=formats[1].itag===18? formats[1] : formats[0].itag===18? formats[0] : formats[1];
+    }
 
-      fmtSet(avBoth);
-      video.src=avBoth.urls[0];
-      console.log("avBoth",avBoth);
+    const fmt=new YTDataSet(formats);
+      video.src=fmt.urls[0];
+      console.log("formats",fmt);
       createOutput(avBoth,VandA);
       VandA.open=true;
     }else{
@@ -98,7 +90,7 @@ function YTDataSet(obj){
     this.qurl[fmt[i].qualityLabel]=fmt[i].url;
     this.mime[i]=fmt[i].mimeType;
     this.mimeOK[i]=video.canPlayType(fmt[i].mimeType);
-    if(this.mimeOK[i]==="") this.mimeOK[i]="no";
+    if(this.mimeOK[i]==="") this.mimeOK[i]="no"; 
   }
 }
 

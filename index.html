@@ -16,17 +16,22 @@
 
 <input type="url" id="yturlInput" placeholder="ここにYouTubeのURLを入れてください"><br>
 <button id="submit">送信</button><br>
-<p id="errorMsg"></p>
-<div id="errorGAS"></div>
+<p id="errorMsg" class="error"></p>
+<p id="errorGAS" class="error"></p>
 
 <div id="showYTArea">
   <video controls playsinline autoplay muted></video>
-  <details id="VandA">
+  <details id="AVdetail">
     <summary>動画＋音声</summary>
-
+    <div id="AVout"></div>
   </details>
-  <details id="AVonly">
-    <summary>動画のみまたは音声のみ</summary>
+  <details id="Vdetail">
+    <summary>動画のみ</summary>
+    <div id="Vout"></div>
+  </details>
+  <details id="Adetail">
+    <summary>音声のみ</summary>
+    <div id="Aout"></div>
   </details>
 </div>
 
