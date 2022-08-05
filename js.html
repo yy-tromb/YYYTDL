@@ -102,11 +102,17 @@ function showYT(e){
 
 function YTDataSet(obj){
   let fmt=obj.fmt;
+  this.urls=[];
+  this.itags=[];
+  this.q=[];
+  this.qurl={};
+  this.mime=[];
+  this.mimeOK=[];
   for(let i=0,len=fmt.length;i<len;i++){
     this.urls[i]=fmt[i].url;
     this.itags[i]=fmt[i].itag;
     this.q[i]=fmt[i].qualityLabel;
-    this.qurl[fmt[i].qualityLabel]=fmt[i].url;
+    this.qurl[fmt[i].qualityLabel]?  this.qurl[fmt[i].qualityLabel].push(this.urls[i]) : this.qurl[fmt[i].qualityLabel]=[this.urls[i]] ;
     this.mime[i]=fmt[i].mimeType;
     this.mimeOK[i]=video.canPlayType(fmt[i].mimeType);
     if(this.mimeOK[i]==="") this.mimeOK[i]="no"; 
@@ -132,8 +138,8 @@ function createOutput(obj,place){
   }
 }
 
-function AVdevide(data){
-
+function AVdevide(adapt){
+  const Out={};
 
 }
 
