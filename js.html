@@ -100,8 +100,7 @@ function showYT(e){
   }
 }
 
-function YTDataSet(obj){
-  let fmt=obj.fmt;
+function YTDataSet(fmt){
   this.urls=[];
   this.itags=[];
   this.q=[];
@@ -139,8 +138,20 @@ function createOutput(obj,place){
 }
 
 function AVdevide(adapt){
-  const Out={};
-
+  const out={Vfmt:[],Afmt:[]};
+  const Vs=[];
+  const As=[];
+  for(let i=0,len=adapt.length;i<len;i++){
+    if(adapt[i].mimeType.startsWith("video/")){
+      Vs.push(adapt[i]);
+    }else if(adapt[i].mimeType.startsWith("audio/")){
+      As.push(adapt[i]);
+    }
+  }
+  out.Vfmt=new YTDataSet(Vs);
+  out.Afmt=new YTDataSet(As);
+  
+  return out;
 }
 
 /* CORS errorを回避するためGASのfetch使いたいがめんどい
