@@ -109,7 +109,7 @@ function YTDataSet(fmt){
   this.mimeOK=[];
   this.bps=[];
   for(let i=0,len=fmt.length;i<len;i++){
-    this.fmt=fmt[i];
+    this.orig=fmt[i];
     this.urls[i]=fmt[i].url;
     this.itags[i]=fmt[i].itag;
     this.q[i]=fmt[i].qualityLabel;
