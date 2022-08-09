@@ -118,7 +118,7 @@ function YTDataSet(fmt){
     this.mime[i]=fmt[i].mimeType;
     this.mimeOK[i]=video.canPlayType(fmt[i].mimeType);
     if(this.mimeOK[i]==="") this.mimeOK[i]="no";
-    this.bps[i]=fmt[i].averageBitrate;
+    this.bps[i]=fmt[i].averageBitrate || fmt[i].bitrate;
   }
 }
 
