@@ -101,6 +101,7 @@ function showYT(e){
 
 
 function YTDataSet(fmt){
+  this.orig=[];
   this.urls=[];
   this.itags=[];
   this.q=[];
@@ -109,7 +110,7 @@ function YTDataSet(fmt){
   this.mimeOK=[];
   this.bps=[];
   for(let i=0,len=fmt.length;i<len;i++){
-    this.orig=fmt[i];
+    this.orig[i]=fmt[i];
     this.urls[i]=fmt[i].url;
     this.itags[i]=fmt[i].itag;
     this.q[i]=fmt[i].qualityLabel;
