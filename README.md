@@ -6,7 +6,9 @@ This is a web application with Google Apps Script. I'm sorry we can't get "Signa
 
 これはGoogle Apps Scriptのウェブアプリです。暗号署名されたURLを使用した動画は取得できません。  
 
-<a href="https://script.google.com/macros/s/AKfycbzmwKZrhCz1ywYPDf_HnY90cql_B8Eb5FlXT68C47OHhcvlFufYyd-x6ezmpWyOs-PO/exec" target="_blank" rel="noopener norefferer">Open GAS Web Application (v.0.2.5)</a>
+[Open GAS Web Application (v.0.2.5) ](https://script.google.com/macros/s/AKfycbzmwKZrhCz1ywYPDf_HnY90cql_B8Eb5FlXT68C47OHhcvlFufYyd-x6ezmpWyOs-PO/exec) 
+  
+[0.3.0b improved UI](https://script.google.com/macros/s/AKfycbzmBmBuIIqtqzKDj9XtkFD_K8fhEq4pXvhIw_E3V1JeQHP8ttEjBScownmCpfWbU4lf/exec)
 
   
 adaptive部分の実装も半分完了しました。  
