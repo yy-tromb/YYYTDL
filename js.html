@@ -100,7 +100,7 @@ function showYT(e){
 }
 
 
-function YTDataSet(fmt){
+function YTDataSet(Data){
   this.orig=[];
   this.urls=[];
   this.itags=[];
@@ -109,16 +109,16 @@ function YTDataSet(fmt){
   this.mime=[];
   this.mimeOK=[];
   this.bps=[];
-  for(let i=0,len=fmt.length;i<len;i++){
-    this.orig[i]=fmt[i];
-    this.urls[i]=fmt[i].url;
-    this.itags[i]=fmt[i].itag;
-    this.q[i]=fmt[i].qualityLabel;
-    this.qurl[fmt[i].qualityLabel]?  this.qurl[fmt[i].qualityLabel].push(this.urls[i]) : this.qurl[fmt[i].qualityLabel]=[this.urls[i]] ;
-    this.mime[i]=fmt[i].mimeType;
-    this.mimeOK[i]=video.canPlayType(fmt[i].mimeType);
+  for(let i=0,len=Data.length;i<len;i++){
+    this.orig[i]=Data[i];
+    this.urls[i]=Data[i].url;
+    this.itags[i]=Data[i].itag;
+    this.q[i]=Data[i].qualityLabel;
+    this.qurl[Data[i].qualityLabel]?  this.qurl[Data[i].qualityLabel].push(this.urls[i]) : this.qurl[Data[i].qualityLabel]=[this.urls[i]] ;
+    this.mime[i]=Data[i].mimeType;
+    this.mimeOK[i]=video.canPlayType(Data[i].mimeType);
     if(this.mimeOK[i]==="") this.mimeOK[i]="no";
-    this.bps[i]=fmt[i].averageBitrate || fmt[i].bitrate;
+    this.bps[i]=Data[i].averageBitrate || Data[i].bitrate;
   }
 }
 
@@ -126,12 +126,12 @@ function createOutput(obj,place){
    while(place.firstChild){
     place.removeChild(place.firstChild);
    }
-   let fmt=obj.fmt;
+   let orig=obj.orig;
    let urls=obj.urls;
    let mime=obj.mime;
    let q=obj.q;
    let bps=obj.bps;
-  for(let i=0,len=fmt.length;i<len;i++){
+  for(let i=0,len=orig.length;i<len;i++){
     let a=document.createElement("a");
     a.classList.add("URLout");
     a.href=urls[i];
