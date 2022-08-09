@@ -113,7 +113,7 @@ function YTDataSet(Data){
     this.orig[i]=Data[i];
     this.urls[i]=Data[i].url;
     this.itags[i]=Data[i].itag;
-    this.q[i]=Data[i].qualityLabel;
+    this.q[i]=Data[i].qualityLabel || Data[i].audioQuality.split("_")[2];
     this.qurl[Data[i].qualityLabel]?  this.qurl[Data[i].qualityLabel].push(this.urls[i]) : this.qurl[Data[i].qualityLabel]=[this.urls[i]] ;
     this.mime[i]=Data[i].mimeType;
     this.mimeOK[i]=video.canPlayType(Data[i].mimeType);
@@ -135,7 +135,7 @@ function createOutput(obj,place){
     let a=document.createElement("a");
     a.classList.add("URLout");
     a.href=urls[i];
-    a.innerHTML=mime[i]+"<br>"+q[i]+" "+(bps[i]/1000);
+    a.innerHTML=mime[i]+"<br>"+q[i]+" "+(bps[i]/1000)+"kbps";
     a.target="_blank";
     a.rel="noopener noreferrer";
     place.appendChild(a);
