@@ -3,7 +3,7 @@
 ## Developping with Google Apps Script , clasp and Google Apps Script GitHub Assistant  
 
 This is a web application with Google Apps Script. I'm sorry we can't get "SignatureChipher" URL  
-Now there is a bug to get "SignatureChipher" URL . This is why exception is not working.  
+Now there is a bug to get "SignatureChipher" URL . This is because exception is not working.  
 
 これはGoogle Apps Scriptのウェブアプリです。暗号署名されたURLを使用した動画はまだ取得できません  
 ただ今、暗号署名されたURLを取得しようとしたときにバグが発生します。例外がうまく機能していないのが原因と考えられます  
