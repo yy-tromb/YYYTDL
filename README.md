@@ -8,7 +8,7 @@ Now there is a bug to get "SignatureChipher" URL . This is because exception is 
 これはGoogle Apps Scriptのウェブアプリです。暗号署名されたURLを使用した動画はまだ取得できません  
 ただ今、暗号署名されたURLを取得しようとしたときにバグが発生します。例外がうまく機能していないのが原因と考えられます  
 
-[Open GAS Web Application (v.0.2.5) ](https://script.google.com/macros/s/AKfycbzmwKZrhCz1ywYPDf_HnY90cql_B8Eb5FlXT68C47OHhcvlFufYyd-x6ezmpWyOs-PO/exec) 
+[Open GAS Web Application (v.0.2.5) ](https://script.google.com/macros/s/AKfycbzmwKZrhCz1ywYPDf_HnY90cql_B8Eb5FlXT68C47OHhcvlFufYyd-x6ezmpWyOs-PO/exec)  
   
 [0.3.0b improved UI](https://script.google.com/macros/s/AKfycbzmBmBuIIqtqzKDj9XtkFD_K8fhEq4pXvhIw_E3V1JeQHP8ttEjBScownmCpfWbU4lf/exec)
 
