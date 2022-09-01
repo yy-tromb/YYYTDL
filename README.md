@@ -14,9 +14,11 @@ Now there is a bug to get "SignatureChipher" URL . This is because exception is 
 
 [v.0.2.5 (Jul 21, 2022)](https://script.google.com/macros/s/AKfycbzmwKZrhCz1ywYPDf_HnY90cql_B8Eb5FlXT68C47OHhcvlFufYyd-x6ezmpWyOs-PO/exec)  
 
-## 
+## Notes
 
 Googleアカウント下で閲覧する場合に不具合が起きることがあります。その場合シークレットモードなどで閲覧してください  
+Problems may occur when browsing under a Google account. In that case, please browse in incognito mode etc.  
+
 adaptive部分の実装も一応完了しました  
 今後、見づらい問題の解消や、AV1,VP9,H.264,AAC,OPUSにわけて表示をしたあと、rangeパラメーター指定による高速ダウンロード(本来の速さ)を実装したいと考えています  
 
