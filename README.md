@@ -23,12 +23,13 @@ adaptive部分の実装も一応完了しました
 今後、見づらい問題の解消や、AV1,VP9,H.264,AAC,OPUSにわけて表示をしたあと、rangeパラメーター指定による高速ダウンロード(本来の速さ)を実装したいと考えています  
   
 ## License  
+  
 これを使おうなんていう物好きはいないと思いますが、つけてみましたので、従ってくださいww。あと、強制はしないが、特にソースを隠す必要なくないか？と思うので、公開してほしいですね。GitHubなんてものもありますし。  
   
 I don't think anyone would like to use this, but I have a license, so please follow it lol. Also, I don't force it, but isn't there a particular need to hide the source? I think so, I want you to publish it. There is GitHub　here.  
   
 ## History  
-
+  
 - now | developping 0.3.0b [try it](https://script.google.com/macros/s/AKfycbzmBmBuIIqtqzKDj9XtkFD_K8fhEq4pXvhIw_E3V1JeQHP8ttEjBScownmCpfWbU4lf/exec)  
 - August 18, 2022 | rename this repository name from YYYTDL-Dev to YYYTDL  
 - Jul 21, 2022 | [the last of v.0.2.5](https://github.com/yyhome-tromb/YYYTDL/tree/v.0.2.5)  
