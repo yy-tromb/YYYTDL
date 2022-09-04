@@ -31,6 +31,7 @@ I don't think anyone would like to use this, but I have a license, so please fol
 ## History  
   
 - now | developping 0.3.0b [try it here](https://script.google.com/macros/s/AKfycbzmBmBuIIqtqzKDj9XtkFD_K8fhEq4pXvhIw_E3V1JeQHP8ttEjBScownmCpfWbU4lf/exec)  
+- September 4, 2022 | this project was licensed under the Apache License, Version 2.0 (the "License")  
 - August 18, 2022 | rename this repository name from YYYTDL-Dev to YYYTDL  
 - Jul 21, 2022 | [the last of v.0.2.5](https://github.com/yyhome-tromb/YYYTDL/tree/v.0.2.5)  
 - June 15, 2022 | create YYYTDL (its name was YYYTDL-Dev then)  
