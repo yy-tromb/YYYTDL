@@ -22,7 +22,7 @@ Problems may occur when browsing under a Google account. In that case, please br
 adaptive部分の実装も一応完了しました  
 今後、見づらい問題の解消や、AV1,VP9,H.264,AAC,OPUSにわけて表示をしたあと、rangeパラメーター指定による高速ダウンロード(本来の速さ)を実装したいと考えています  
   
-## License
+## License  
 これを使おうなんていう物好きはいないと思いますが、つけてみましたので、従ってくださいww。あと、強制はしないが、特にソースを隠す必要なくないか？と思うので、公開してほしいですね。GitHubなんてものもありますし。  
   
 I don't think anyone would like to use this, but I have a license, so please follow it lol. Also, I don't force it, but isn't there a particular need to hide the source? I think so, I want you to publish it. There is GitHub　here.  
