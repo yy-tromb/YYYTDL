@@ -22,6 +22,11 @@ Problems may occur when browsing under a Google account. In that case, please br
 adaptive部分の実装も一応完了しました  
 今後、見づらい問題の解消や、AV1,VP9,H.264,AAC,OPUSにわけて表示をしたあと、rangeパラメーター指定による高速ダウンロード(本来の速さ)を実装したいと考えています  
   
+## Problems
+- bad UI  
+- slow download  
+- this can't download many videos and audios(All YouTube Music)  
+    
 ## License - Apache License 2.0  
   
 これを使おうなんていう物好きはいないと思いますが、つけてみましたので、従ってくださいww。また、強制はしませんが、特にソースを隠す必要なくないか？と思うので、公開してほしいですね。GitHubなんてものもありますし。  
